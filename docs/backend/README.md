@@ -60,7 +60,8 @@ Local Node
 
 See:
 
-- [Domain & Convex Schema](domain-schema.md)
+- [Convex Schema v0.1](convex-schema-v0.1.md) — concrete build-ready table/index proposal
+- [Domain Model](domain-schema.md) — conceptual entity model and invariants
 - [Node Protocol](node-protocol.md)
 - [Git Workspaces](git-workspaces.md)
 - [State Machines](state-machines.md)
