@@ -64,6 +64,29 @@ Phone/Web
 
 **Goal:** make Zamolxis useful without opening the workstation terminal.
 
+Implementation order:
+
+```text
+App Shell
+  -> My Work
+  -> Work Session
+  -> Agent Run
+  -> normalized realtime activity
+  -> message/stop controls
+  -> mobile states
+  -> workflow graph
+```
+
+Frontend foundation:
+
+- Next.js App Router + TypeScript
+- shadcn/ui as primary component layer
+- reusable UI in `packages/ui`
+- third-party wrappers/integrations in `packages/lib`
+- Convex reactive queries for server state
+- React Flow/React Flow UI for workflow visualization
+- TanStack Virtual for large event feeds
+
 Deliverables:
 
 - My Work dashboard
