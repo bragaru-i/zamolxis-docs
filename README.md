@@ -67,6 +67,8 @@ Workspace → Product → Work Session → Tasks → Agent Runs → Live Activit
 | [Git Workspaces](docs/backend/git-workspaces.md) | Required Git worktree lifecycle, locking and integration |
 | [Node Protocol](docs/backend/node-protocol.md) | Commands, events, offline buffering and reconciliation |
 | [Backend State Machines](docs/backend/state-machines.md) | Valid Run, Workspace, Task and Session transitions |
+| [Backend API Contract v0.1](docs/backend/backend-api-contract-v0.1.md) | Concrete queries, mutations, Node operations and Supervisor tools |
+| [Frontend Architecture v0.1](docs/frontend-architecture-v0.1.md) | Next.js/shadcn stack, package boundaries, realtime UI and graph architecture |
 | [Realtime UI](docs/realtime-ui.md) | Session-centric operator experience |
 | [Security](docs/security.md) | Permissions, trust boundaries and approvals |
 | [Roadmap](docs/roadmap.md) | Milestones from architecture PoC to Alpha |
