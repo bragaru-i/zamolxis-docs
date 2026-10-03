@@ -60,6 +60,8 @@ Local Node
 
 See:
 
+- [Code Architecture](code-architecture.md) — human-first monorepo structure, layers, DTOs, ports/adapters and skills boundary
+
 - [Convex Schema v0.1](convex-schema-v0.1.md) — concrete build-ready table/index proposal
 - [Domain Model](domain-schema.md) — conceptual entity model and invariants
 - [Node Protocol](node-protocol.md)
