@@ -17,7 +17,26 @@ Deliverables:
 
 Exit criterion: a mocked Node can appear online and drive a mocked Agent Run through queued → running → completed.
 
-## M1 — First local runtime vertical slice
+## M1 — Repository & Workspace foundation
+
+**Goal:** make Git repository identity and isolated execution deterministic before native agents are allowed to mutate code.
+
+Deliverables:
+
+- Repository Registry
+- per-workstation Repository Locations
+- first-class Workspace entity
+- Git Worktree Manager
+- deterministic branch/worktree naming
+- Workspace ownership leases
+- pre-run repository/worktree validation
+- dirty-state capture
+- restart/reconnect reconciliation
+- Integration Workspace primitive
+
+Exit criterion: two parallel mocked tasks receive separate worktrees from the same repository, can modify the same source path independently, survive a Node restart, and can be combined through an Integration Workspace without touching the canonical working directory.
+
+## M2 — First local runtime vertical slice
 
 **Goal:** prove real remote control of one native local coding session.
 
@@ -41,7 +60,7 @@ Phone/Web
   -> session records result
 ```
 
-## M2 — Realtime operator UI
+## M3 — Realtime operator UI
 
 **Goal:** make Zamolxis useful without opening the workstation terminal.
 
@@ -57,7 +76,7 @@ Deliverables:
 
 Exit criterion: a user can understand what a running session is doing from the web/mobile UI.
 
-## M3 — Session intelligence
+## M4 — Session intelligence
 
 **Goal:** make work persistent above individual agent processes.
 
@@ -71,7 +90,7 @@ Deliverables:
 
 Exit criterion: stop one worker, start another, and continue the same Work Session without losing the product-level context.
 
-## M4 — Supervisor
+## M5 — Supervisor
 
 **Goal:** accept natural-language instructions instead of requiring manual runtime operations.
 
@@ -86,7 +105,7 @@ Deliverables:
 
 Exit criterion: a user can issue a natural-language task and Zamolxis routes it to the correct Work Session and runtime.
 
-## M5 — Multi-agent workflows
+## M6 — Multi-agent workflows
 
 **Goal:** coordinate parallel and sequential work durably.
 
@@ -101,7 +120,7 @@ Deliverables:
 
 Exit criterion: research → parallel implementation → tests → review can complete without a continuously running orchestration process.
 
-## M6 — Multiple runtime adapters
+## M7 — Multiple runtime adapters
 
 **Goal:** prove runtime independence.
 
@@ -115,7 +134,7 @@ Deliverables:
 
 Exit criterion: one Work Session can contain runs from multiple native runtimes without special-casing the session model.
 
-## M7 — Multi-workstation execution
+## M8 — Multi-workstation execution
 
 **Goal:** treat registered computers as interchangeable execution nodes.
 
@@ -129,7 +148,7 @@ Deliverables:
 
 Exit criterion: one Work Session can coordinate work on Workstation A and Workstation B.
 
-## M8 — Approvals & hardening
+## M9 — Approvals & hardening
 
 **Goal:** make autonomous operation safe enough for daily use.
 
@@ -145,7 +164,7 @@ Deliverables:
 
 Exit criterion: unattended local agents can run within explicit boundaries while risky operations reliably stop for approval.
 
-## M9 — Alpha
+## M10 — Alpha
 
 **Goal:** daily-driver product.
 
