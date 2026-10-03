@@ -62,6 +62,11 @@ Workspace → Product → Work Session → Tasks → Agent Runs → Live Activit
 | [Runtime Adapters](docs/runtime-adapters.md) | Runtime-independent execution contract |
 | [Zamolxis Node](docs/local-node.md) | Local execution bridge and workstation responsibilities |
 | [Control Plane](docs/control-plane.md) | Convex-backed state, events, commands and Supervisor |
+| [Backend Build Spec](docs/backend/README.md) | Implementation order and backend component map |
+| [Backend Domain Schema](docs/backend/domain-schema.md) | Concrete entities, fields, relationships and invariants |
+| [Git Workspaces](docs/backend/git-workspaces.md) | Required Git worktree lifecycle, locking and integration |
+| [Node Protocol](docs/backend/node-protocol.md) | Commands, events, offline buffering and reconciliation |
+| [Backend State Machines](docs/backend/state-machines.md) | Valid Run, Workspace, Task and Session transitions |
 | [Realtime UI](docs/realtime-ui.md) | Session-centric operator experience |
 | [Security](docs/security.md) | Permissions, trust boundaries and approvals |
 | [Roadmap](docs/roadmap.md) | Milestones from architecture PoC to Alpha |
