@@ -7,8 +7,13 @@ Zamolxis provides one workspace for supervising work performed by multiple AI co
 Instead of exposing terminals and processes as the primary abstraction, Zamolxis models:
 
 ```text
-Workspace → Product → Work Session → Tasks → Agent Runs → Live Activity
+Product → Repository → Work Session → Task → Workspace → Agent Run → Runtime
 ```
+
+Executable behavior lives in `bragaru-i/zamolxis`. This repository contains
+architecture/reference material; the capability lists below describe the design.
+See [Alpha implementation boundary](docs/alpha-implementation.md) for tested
+behavior and current limitations.
 
 ## What Zamolxis does
 
