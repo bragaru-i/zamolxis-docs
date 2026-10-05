@@ -49,12 +49,16 @@ integration. Another test proves two Builders execute concurrently and a depende
 Task receives both trusted commits. Native acceptance on 2026-10-05 used Codex
 0.160.0 with an auth-only temporary profile, actual Builder edits, a candidate
 commit, a separate native Verifier, executed checks, trust and local integration.
-Canonical HEAD/status stayed unchanged. Temporary credentials were removed.
+A second authenticated run deliberately failed the first candidate, then executed
+native Repair, a new SHA, a second independent native Verifier and successful
+trust/integration. Failed trust history remained intact. Canonical HEAD/status
+stayed unchanged. Temporary credentials were removed.
 
 Reproduce the native path in the executable repository:
 
 ```sh
 ZAMOLXIS_CODEX_ACCEPTANCE=1 pnpm exec vitest run tests/control-plane-loop.test.ts -t 'runs text intent'
+ZAMOLXIS_CODEX_ACCEPTANCE=1 ZAMOLXIS_CODEX_REPAIR_ACCEPTANCE=1 pnpm exec vitest run tests/control-plane-loop.test.ts -t 'runs text intent'
 ```
 
 The test uses actual Convex function implementations in `convex-test` and fixture
