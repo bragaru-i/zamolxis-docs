@@ -5,7 +5,15 @@ This note describes the Alpha integration implementation, not a deployed service
 The older specifications in this repository remain design/reference material.
 
 The hierarchy is Product -> Repository -> Work Session -> Task -> Workspace ->
-Agent Run -> Runtime. Human OIDC authentication and Node enrollment are separate.
+Agent Run -> Runtime. Human authentication now uses Convex Auth with Google;
+Node enrollment remains separate. This supersedes the external OIDC frontend flow.
+Convex owns human accounts/sessions and the operator grants or revokes product
+access via `users.accessStatus` (`allowed`, `pending`, `blocked`). Missing status
+denies access; Google sign-in does not self-authorize. All product APIs enforce
+the database gate and retain ownership isolation. Blocking an owner also denies
+Node cloud operations and credential refresh, without killing local processes.
+See the executable repository's `docs/google-auth-access.md` for current setup.
+Google OAuth still requires a Google Cloud client; no Auth0 account is required.
 One configured HTTPS application origin binds OAuth redirects, QR and bootstrap;
 the phone talks to Convex and the Mac connects outbound.
 
@@ -63,5 +71,5 @@ ZAMOLXIS_CODEX_ACCEPTANCE=1 ZAMOLXIS_CODEX_REPAIR_ACCEPTANCE=1 pnpm exec vitest 
 
 The test uses actual Convex function implementations in `convex-test` and fixture
 identities. Public phone/OIDC/pairing/deployed-device/launchd E2E is not established
-without operator configuration. Live deployment validation was blocked by automatic
+without operator configuration. Google browser OAuth is not yet validated. Live deployment validation was blocked by automatic
 approval review of `convex dev --once`; no production settings were changed.
