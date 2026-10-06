@@ -21,6 +21,38 @@ Zamolxis Node
 
 Convex functions are already a delivery boundary. Do not add artificial HTTP-style controllers around them.
 
+## Public Orchestrator API
+
+### orchestrator.listConversations — query
+
+Returns the owner's durable top-level conversations. These are not Work Sessions.
+
+### orchestrator.messages — query
+
+```ts
+{ conversationId: Id<"orchestratorConversations"> }
+```
+
+Returns authorized messages, persisted routing decisions and typed links to canonical work items.
+
+### orchestrator.submit — mutation
+
+```ts
+{
+  conversationId?: Id<"orchestratorConversations">;
+  text: string;
+  productId?: Id<"products">;
+  repositoryId?: Id<"repositories">;
+  idempotencyKey: string;
+}
+```
+
+Persists the user message and queues one Orchestrator decision. It does not create a Work Session.
+The accepted decision may answer, link existing work, store an inert proposal, continue an
+authorized Session, create a Session for new durable work, or ask a question. Session creation and
+reuse are separate deterministic backend transitions with Product/repository isolation and
+idempotency.
+
 ## Public session API
 
 ### sessions.listMine — query
@@ -60,6 +92,11 @@ Creates the Work Session and repository relationships transactionally.
 ### sessions.cancel — mutation
 
 Validates ownership and session state, requests cancellation of active work, and lets application logic enqueue required stop commands.
+
+Normal completion is not a conversational guess or a manual close gesture. The workflow closes a
+Session only when all Tasks are terminal, no Run, approval, verifier, repair or integration is
+pending, and every required exact-SHA trust decision is settled. The Orchestrator reports and links
+that state; it cannot override it.
 
 ## Task API
 
@@ -306,8 +343,11 @@ Expose narrow product semantics:
 
 ```text
 findRelevantSessions
+findRelevantTickets
+getLinkedWorkState
 getSessionContext
 createWorkSession
+continueWorkSession
 createTaskPlan
 allocateWorkspace
 startAgentRun
@@ -315,6 +355,7 @@ sendToAgentRun
 stopAgentRun
 requestApproval
 summarizeSession
+linkWorkItem
 ```
 
 Never expose Supervisor tools such as:

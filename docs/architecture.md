@@ -14,7 +14,8 @@
 |          |                         |                       |
 |          +----------+--------------+                       |
 |                     v                                      |
-|   Products / Sessions / Tasks / Runs / Events / Approvals |
+|   Conversations / Products / Sessions / Tasks / Runs      |
+|   Events / Approvals / Evidence / Links                   |
 +---------------------+--------------------------------------+
                       |
                secure outbound links
@@ -40,6 +41,7 @@ The control plane owns durable coordination, not source code execution.
 It stores:
 
 - registered workstations and capabilities
+- durable Orchestrator conversations and routing decisions
 - products and repositories
 - work sessions
 - tasks and dependency graphs
@@ -54,28 +56,42 @@ Raw terminal output should be retained locally or selectively streamed. The clou
 
 ## Global Supervisor
 
-The Supervisor is first a conversational project lead. It can answer questions, summarize
-current state, explain failures, review evidence and propose a task breakdown without creating
-Tasks or Agent Runs. Execution begins only after explicit delegation: direct execution language
-from the user or the owner's action to open a displayed proposal.
+> **Breaking architecture boundary:** the app's primary conversation is an Orchestrator
+> Conversation. It is not a Work Session, and submitting a message must not create a Work Session
+> before routing decides one is required.
+
+The Global Supervisor is the Orchestrator behind the app's primary chat. Its conversation exists
+outside Work Sessions. It can answer questions, summarize current state, explain failures, review
+evidence and link existing tickets, Sessions, Tasks, Agent Runs and pull requests without creating
+a Work Session, Task or Agent Run.
 
 The Supervisor interprets user intent. It decides:
 
-- continue an existing Work Session or create a new one
+- answer directly from durable control-plane state
+- link relevant tickets, Sessions, Tasks, Agent Runs, evidence and pull requests
+- continue an existing Work Session or create a new one when work is required
 - which tasks are needed
 - whether work can run concurrently
 - which runtime capability is appropriate
 - whether an additional worker is useful
 - when user approval is required
 
-Its conversational outcomes are `answer`, `propose` and `ask`. `propose` is inert: the proposal
-is stored with its repository context but no worker is dispatched. `delegate` crosses the durable
-execution boundary and lets the backend validate and create Tasks. Ambiguous or legacy planning
-output is handled conservatively as a proposal.
+Its routing outcomes are `answer`, `link`, `propose`, `continue`, `create` and `ask`. `answer`,
+`link` and `propose` are inert: no Work Session or worker is created. `continue` and `create`
+cross the durable work boundary only after explicit execution intent or a justified need for
+durable investigation. The backend validates Product isolation, route targets and authorization
+before changing workflow state.
+
+The Orchestrator may summarize structured state itself or select an existing Agent Run when its
+evidence is relevant. Starting a new agent is a durable routing decision, never a side effect of a
+status question. Role profiles choose runtime/model/effort for future Supervisor, Builder,
+Verifier and Repair runs; each Run snapshots and exposes the actual model used.
 
 The Supervisor recommends **what could happen**. The owner explicitly delegates, and the backend
 authorizes **what will happen**. The Supervisor is not the durable source of truth for **what is
-happening**.
+happening**. Session closure is deterministic: all Tasks are terminal, no Run, approval,
+verification, repair or integration remains pending, and every required exact-SHA trust decision
+is settled.
 
 ## Workflow engine
 
