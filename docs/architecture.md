@@ -54,6 +54,11 @@ Raw terminal output should be retained locally or selectively streamed. The clou
 
 ## Global Supervisor
 
+The Supervisor is first a conversational project lead. It can answer questions, summarize
+current state, explain failures, review evidence and propose a task breakdown without creating
+Tasks or Agent Runs. Execution begins only after explicit delegation: direct execution language
+from the user or the owner's action to open a displayed proposal.
+
 The Supervisor interprets user intent. It decides:
 
 - continue an existing Work Session or create a new one
@@ -63,7 +68,14 @@ The Supervisor interprets user intent. It decides:
 - whether an additional worker is useful
 - when user approval is required
 
-The Supervisor decides **what should happen**. It is not the durable source of truth for **what is happening**.
+Its conversational outcomes are `answer`, `propose` and `ask`. `propose` is inert: the proposal
+is stored with its repository context but no worker is dispatched. `delegate` crosses the durable
+execution boundary and lets the backend validate and create Tasks. Ambiguous or legacy planning
+output is handled conservatively as a proposal.
+
+The Supervisor recommends **what could happen**. The owner explicitly delegates, and the backend
+authorizes **what will happen**. The Supervisor is not the durable source of truth for **what is
+happening**.
 
 ## Workflow engine
 

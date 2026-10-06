@@ -76,6 +76,11 @@ Commands have IDs, acknowledgement state and idempotency semantics.
 
 The Supervisor can use an agent framework for natural-language reasoning and tool calls, while deterministic application state remains in normal database tables.
 
+Conversation is the default. Questions, status checks, explanations and reviews produce an
+answer without Tasks or Agent Runs. A requested plan produces a stored proposal. Only explicit
+delegation creates executable Tasks; the backend validates that transition and remains the
+authority for dispatch, capacity, verification, trust and integration.
+
 Supervisor tools should operate at product-level semantics:
 
 ```text

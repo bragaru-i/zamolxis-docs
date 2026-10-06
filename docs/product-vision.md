@@ -12,7 +12,9 @@ Zamolxis provides one coherent model:
 Workspace → Product → Work Session → Tasks → Agent Runs → Live Activity
 ```
 
-A Work Session represents a durable unit of intent. Agents are temporary executors inside it.
+A Work Session represents a durable conversation and, when explicitly delegated, its unit of
+work. Agents are temporary executors inside it. Ordinary questions and status checks remain
+conversation: they do not create Tasks, Agent Runs, Verifiers or Repairs.
 
 ## Example
 
@@ -22,11 +24,13 @@ A team is building **Acme Platform**. A user opens a session called **Product Al
 
 Zamolxis may create research workers, implementation workers and a review worker. They may use different runtimes and execute on different registered workstations, but the user sees one Work Session and one coherent history.
 
-Later the user says:
+Later the user asks:
 
-> Check why the chart grouping is incorrect.
+> What is causing the chart grouping problem?
 
-The Supervisor decides whether this belongs to the existing Product Alpha session or should become new work.
+The Supervisor investigates read-only and answers in the existing conversation. If it suggests a
+repair, the proposal remains inert until the user says, for example, “Open this work” or selects
+the equivalent action. Only then does Zamolxis create Tasks and delegate to Builders.
 
 ## Product principles
 
