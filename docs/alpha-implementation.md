@@ -49,8 +49,10 @@ Current Orchestrator limits are explicit: status answers link Sessions, pending 
 requests, attention Tasks (`needs_input`, `trust_failed`, `ready_for_integration`, `failed`), their
 trust decisions and active Runs for the five most recent Sessions in scope. Link status is a
 snapshot from answer time; the linked view is canonical. External-ticket links need a connector and
-are not implemented, and there are no dedicated canonical cards beyond link buttons. The top-level
-answer/router is deterministic and is not a separately configured model-backed role. There is one
+are not implemented, and there are no dedicated canonical cards beyond link buttons. Routing is
+deterministic and backend-authorized; the Orchestrator model only writes replies (answer, ask or an
+inert proposal) from the backend summary, read-only and without a repository, on an owned Node with
+the Orchestrator profile's runtime. Without one, the summary is the answer. There is one
 active conversation per owner in Alpha; conversation listing/archiving is still target design.
 
 Downstream Tasks inherit trusted prerequisite commits; multiple prerequisites

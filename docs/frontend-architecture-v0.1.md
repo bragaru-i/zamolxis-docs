@@ -262,8 +262,9 @@ when useful.
 The shipped Alpha uses this boundary with an inline Orchestrator transcript followed by the
 existing Sessions list. It renders persisted route labels and typed link buttons: Session, Task,
 approval and trust links open the Session, a Run link opens Run detail (`?run=<id>`), and a pull
-request opens externally. `WorkDrawer`, richer LinkedWorkCards, external-ticket links and a separate
-model-backed Orchestrator role are still target design.
+request opens externally. Replies show a thinking state while the model writes, then the model and
+token count; proposals show **Open this work**. `WorkDrawer`, richer LinkedWorkCards and
+external-ticket links are still target design.
 
 LinkedWorkCard can target an external ticket, Work Session, Task, Agent Run, approval, trust
 decision, artifact or pull request. It shows enough state to understand the answer and opens the
@@ -274,8 +275,8 @@ Integration. Opening a role shows its runtime, model, reasoning effort and instr
 snapshot the effective Product/global profile and their detail shows the actual model; changing a
 profile never rewrites running or historical work.
 
-In Alpha, the configurable **Supervisor** profile is used after explicit work enters a Work
-Session. The deterministic top-level Orchestrator has no separate runtime/model selector.
+In Alpha, Settings → Agents has separate **Orchestrator** (top-level replies) and **Supervisor**
+(inside a Work Session) profiles.
 
 SessionCard shows:
 

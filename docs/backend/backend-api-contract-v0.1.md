@@ -25,10 +25,13 @@ Convex functions are already a delivery boundary. Do not add artificial HTTP-sty
 
 The signatures below describe the full target. The shipped Alpha subset has one active
 conversation per owner: `orchestrator.messages` takes `{}`, and `orchestrator.submit` creates that
-conversation on first use. It persists `answer | create | continue`, returns `{ messageId, route,
+conversation on first use. It persists `answer | ask | propose | create | continue`
+(`ask`/`propose` set by the model reply), returns `{ messageId, route,
 workSessionId? }`, and emits typed links to Sessions, approvals, pull requests, Tasks, trust decisions and active
-Runs. Conversation listing, explicit conversation selection, inert proposals and external-ticket
-links remain planned.
+Runs. A question with an eligible Node enqueues `orchestrator.answer`, settled by that Node via
+`orchestrator.settleAnswer`; `orchestrator.openProposal` turns an inert proposal into a Session on
+the owner's action. Conversation listing, explicit conversation selection and external-ticket links
+remain planned.
 
 ### orchestrator.listConversations — query
 
