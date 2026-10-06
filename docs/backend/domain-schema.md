@@ -143,11 +143,13 @@ external tickets, Sessions, Tasks, Agent Runs, approvals, evidence records, arti
 requests. Targets are authorized when read and cannot cross Product ownership.
 
 The shipped Alpha stores one combined user/Orchestrator exchange per row (`text`, `reply`, `route`)
-with optional Product, repository and Work Session IDs. Its route union is `answer | create |
-continue`. Status answers emit `session`, `approval`, `pull_request` (with an https `url`), `task`,
+with optional Product, repository and Work Session IDs. Its route union is `answer | ask | propose | create |
+continue`; rows also carry `status` (`thinking | answered`), `answeredBy` (`model | deterministic`),
+`modelError`, `proposal`, `proposalSessionId`, the requested runtime/model and reported
+model/token usage. Status answers emit `session`, `approval`, `pull_request` (with an https `url`), `task`,
 `trust` and `run` links, each carrying its `workSessionId`; `status` is a snapshot from answer time.
-`external_ticket` is reserved but not emitted. Splitting transcript roles, route explanations, proposals, model usage and the
-remaining target resolvers is future work.
+`external_ticket` is reserved but not emitted. Splitting transcript roles, route explanations and the remaining target resolvers is future
+work.
 
 ## workSessions
 
