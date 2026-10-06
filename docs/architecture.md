@@ -87,6 +87,13 @@ evidence is relevant. Starting a new agent is a durable routing decision, never 
 status question. Role profiles choose runtime/model/effort for future Supervisor, Builder,
 Verifier and Repair runs; each Run snapshots and exposes the actual model used.
 
+**Alpha implementation:** one active owner-level conversation persists `answer`, `create` and
+`continue`. It answers architecture questions and deterministic status summaries without creating
+work, and returns typed Session links. Explicit execution creates a Session; explicit continuation
+can reuse a recently linked Session in the selected repository. Ticket, Task, Run, approval,
+evidence and pull-request resolution, proposals/asks at the global layer and a separately
+configured model-backed Orchestrator remain target capabilities.
+
 The Supervisor recommends **what could happen**. The owner explicitly delegates, and the backend
 authorizes **what will happen**. The Supervisor is not the durable source of truth for **what is
 happening**. Session closure is deterministic: all Tasks are terminal, no Run, approval,

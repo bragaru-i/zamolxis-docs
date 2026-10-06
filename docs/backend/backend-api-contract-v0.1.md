@@ -23,6 +23,12 @@ Convex functions are already a delivery boundary. Do not add artificial HTTP-sty
 
 ## Public Orchestrator API
 
+The signatures below describe the full target. The shipped Alpha subset has one active
+conversation per owner: `orchestrator.messages` takes `{}`, and `orchestrator.submit` creates that
+conversation on first use. It persists `answer | create | continue`, returns `{ messageId, route,
+workSessionId? }`, and currently emits typed links for Work Sessions only. Conversation listing,
+explicit conversation selection, inert proposals and links to other target types remain planned.
+
 ### orchestrator.listConversations — query
 
 Returns the owner's durable top-level conversations. These are not Work Sessions.
@@ -47,7 +53,8 @@ Returns authorized messages, persisted routing decisions and typed links to cano
 }
 ```
 
-Persists the user message and queues one Orchestrator decision. It does not create a Work Session.
+Persists the user message and routes one Orchestrator decision. Submitting a question does not
+create a Work Session.
 The accepted decision may answer, link existing work, store an inert proposal, continue an
 authorized Session, create a Session for new durable work, or ask a question. Session creation and
 reuse are separate deterministic backend transitions with Product/repository isolation and
