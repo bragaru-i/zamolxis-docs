@@ -14,8 +14,9 @@ Owner → Orchestrator Conversation → answer / linked Work Session
 
 Executable behavior lives in `bragaru-i/zamolxis`. This repository contains
 architecture/reference material; the capability lists below describe the design.
-See [Alpha implementation boundary](docs/alpha-implementation.md) for tested
-behavior and current limitations.
+See [Alpha implementation boundary](docs/alpha-implementation.md) for the recorded
+implementation boundary, and treat the executable repository's current Alpha status
+as authoritative when these references lag it.
 
 ## What Zamolxis does
 
@@ -83,20 +84,23 @@ behavior and current limitations.
 
 ## Status
 
-**Pre-Alpha / Architecture phase**
+**Private Alpha candidate**
 
-The immediate objective is a vertical slice:
+As of 2026-10-06, the executable repository through PR #104 has built the engineering
+Alpha: a deployed web/mobile control plane drives SHA-bound planning, parallel local
+Builders, independent Verifiers, deterministic trust and repair, and local integration.
+Codex and Claude runtimes, persistent Orchestrator and Work Session conversations,
+approvals, execution traces, usage, onboarding and per-repository publishing support
+are implemented.
 
-```text
-Web UI
-  → Control Plane
-  → Zamolxis Node
-  → native local coding runtime
-  → normalized live events
-  → Web UI
-```
-
-Once this loop works reliably for one runtime and one workstation, Zamolxis expands to session intelligence, Supervisor routing, multi-agent workflows, additional runtime adapters and multiple workstations.
+This is not yet an Alpha-complete claim. Final acceptance passed on exact executable
+main SHA `85c1f32`: the full check and all five authenticated Codex groups passed
+without changing the canonical checkout. The sole non-deferred gate is one successful
+end-to-end production PR through Zamolxis. The owner has deferred real-iPhone/PWA/
+offline checks, deployed isolation with a second Google account, and execution across
+a second registered workstation. The current production installation demonstrates
+one Mac. See the executable repository's `docs/alpha-status.md` for the live evidence,
+limitations and handoff.
 
 ## Name
 

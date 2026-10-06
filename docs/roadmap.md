@@ -1,6 +1,28 @@
 # Zamolxis Roadmap
 
-The roadmap is milestone-based rather than date-driven. Each milestone must produce a demonstrable end-to-end capability before the next abstraction is added.
+The roadmap is milestone-based rather than date-driven. Each milestone describes a
+product target, not a claim that every listed item is shipped. The executable
+`bragaru-i/zamolxis` repository is the behavioral source of truth.
+
+## Current position — private Alpha candidate
+
+As of 2026-10-06, executable main through PR #104 spans the core outcomes of these
+milestones: the deployed control plane can plan from natural language, run parallel
+Builders in isolated worktrees, verify exact candidate SHAs independently, apply a
+deterministic trust/repair policy, prepare local integration, and expose the workflow,
+approvals and history through the web/mobile UI. Codex and Claude are operational
+runtime adapters.
+
+The engineering Alpha is therefore built, but the Alpha exit criterion is not yet
+fully proven. Final acceptance passed on exact executable main SHA `85c1f32`: the full
+check and all five authenticated Codex groups (intent loop, Supervisor, Orchestrator,
+approval reject/approve and restart/resume) passed with the canonical checkout
+unchanged. The sole non-deferred gate is one production PR opened end to end through
+Zamolxis. The owner has deferred real iPhone/PWA/offline checks, deployed
+second-Google-account isolation and validation with a second workstation. Production
+currently demonstrates one Mac. Items below such as Hermes, external ticket connectors
+and other explicitly unimplemented details remain roadmap scope; presence in a
+milestone does not mean they shipped.
 
 ## M0 — Architecture & contracts
 
@@ -191,7 +213,7 @@ Exit criterion: unattended local agents can run within explicit boundaries while
 
 **Goal:** daily-driver product.
 
-Alpha should support:
+The Alpha target is:
 
 - web/mobile supervision
 - persistent Work Sessions
@@ -204,3 +226,9 @@ Alpha should support:
 - historical inspection
 
 Alpha is successful when the user can leave the workstations running, operate ongoing coding work primarily from Zamolxis, and only open a native agent UI when deep manual intervention is required.
+
+Current assessment: **private Alpha candidate**. The engineering workflow and final
+current-main acceptance are complete; the remaining production-publishing proof and
+owner-deferred device, account-isolation and multi-workstation checks are recorded
+above. Until those gates are complete, this roadmap does not label the product
+Alpha-complete.
