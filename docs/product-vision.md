@@ -9,24 +9,34 @@ Engineering work can span several AI coding runtimes, multiple workstations, rep
 Zamolxis provides one coherent model:
 
 ```text
-Workspace → Product → Work Session → Tasks → Agent Runs → Live Activity
+Workspace → Product → Orchestrator Conversation → Work Session → Tasks → Agent Runs → Live Activity
 ```
 
-A Work Session represents a durable unit of intent. Agents are temporary executors inside it.
+The Orchestrator Conversation is the user's persistent entry point across work. A Work Session is
+a durable unit of investigation or execution that the Orchestrator creates or reuses when needed.
+Agents are temporary executors inside a Session. Ordinary questions and status checks do not
+create Work Sessions, Tasks, Agent Runs, Verifiers or Repairs.
 
 ## Example
 
-A team is building **Acme Platform**. A user opens a session called **Product Alpha — Reporting Dashboard** and asks:
+A team is building **Acme Platform**. In the main chat, a user asks:
 
 > Investigate the existing data model, implement the API and UI in parallel, run tests, then review the result.
 
-Zamolxis may create research workers, implementation workers and a review worker. They may use different runtimes and execute on different registered workstations, but the user sees one Work Session and one coherent history.
+The Orchestrator creates a **Product Alpha — Reporting Dashboard** Work Session, then may create
+research workers, implementation workers and a review worker. They may use different runtimes and
+execute on different registered workstations, but the user sees one linked Work Session and one
+coherent Orchestrator history.
 
-Later the user says:
+Later the user asks:
 
-> Check why the chart grouping is incorrect.
+> What is causing the chart grouping problem?
 
-The Supervisor decides whether this belongs to the existing Product Alpha session or should become new work.
+The Orchestrator finds the linked Session and its runs, summarizes their evidence and returns links
+to the relevant Session and Agent Run. It creates nothing. If it suggests a repair, the proposal
+remains inert until the user says, for example, “Open this work” or selects the equivalent action.
+It then continues the existing Session or creates a new one when Product/repository isolation or
+the goal requires it.
 
 ## Product principles
 

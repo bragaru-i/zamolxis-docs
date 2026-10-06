@@ -10,12 +10,14 @@ User
       └── RepositoryLocation
 
 Product
- └── Repository
-      └── WorkSession
-           └── Task
-                └── Workspace
-                     └── AgentRun
-                          └── RunEvent
+ ├── Repository
+ ├── OrchestratorConversation
+ │    └── OrchestratorMessage
+ └── WorkSession
+      └── Task
+           └── Workspace
+                └── AgentRun
+                     └── RunEvent
 ```
 
 A Repository is logical/global. A RepositoryLocation says where that repository exists on a particular Workstation.
@@ -95,6 +97,46 @@ Maps a logical Repository to a local clone.
 ```
 
 Unique logical constraint: one canonical location per repository/workstation unless multiple clones are explicitly supported later.
+
+## orchestratorConversations
+
+The durable human-facing chat above Work Sessions. One owner may have several conversations;
+Product scope is optional until routing resolves it.
+
+```ts
+{
+  ownerId,
+  productId?,
+  title?,
+  lastActivityAt,
+  createdAt,
+  updatedAt,
+  archivedAt?
+}
+```
+
+## orchestratorMessages
+
+```ts
+{
+  conversationId,
+  ownerId,
+  role: "user" | "orchestrator",
+  text,
+  route?: "answer" | "link" | "propose" | "continue" | "create" | "ask",
+  routeExplanation?,
+  proposalDigest?,
+  createdWorkSessionId?,
+  continuedWorkSessionId?,
+  modelActual?,
+  usage?,
+  createdAt
+}
+```
+
+Typed message links live in `orchestratorMessageLinks` so one answer can reference several
+external tickets, Sessions, Tasks, Agent Runs, approvals, evidence records, artifacts or pull
+requests. Targets are authorized when read and cannot cross Product ownership.
 
 ## workSessions
 

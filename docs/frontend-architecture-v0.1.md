@@ -207,7 +207,8 @@ Desktop:
 +--------------------------------------------------------------+
 | Sidebar | Main content                           | Inspector |
 |         |                                        | optional  |
-| My Work | Session / Run                          |           |
+| Chats   | Orchestrator conversation              | Linked    |
+| My Work | Session / Run detail                   | work      |
 | Needs   |                                        |           |
 | You     |                                        |           |
 | Nodes   |                                        |           |
@@ -240,13 +241,32 @@ Primary route: `/`.
 
 ```text
 MyWorkPage
-├── MyWorkHeader
-├── SessionFilters
+├── OrchestratorHeader
+├── OrchestratorConversation
+│   ├── MessageBlock
+│   ├── RoutingDecision
+│   └── LinkedWorkCard
 ├── NeedsYouSection
-├── ActiveSessionList
-│   └── SessionCard
-└── RecentSessions
+├── OrchestratorComposer
+└── WorkDrawer
+    ├── ActiveSessionList
+    └── RecentSessions
 ```
+
+The home composer says **Send**, not **Start**, and never creates a Work Session merely to store a
+question. Product/repository selectors are optional context for routing. The Orchestrator can
+answer from control-plane state, return typed links, continue an existing Session, create a
+Session for new execution, or ask a clarifying question. The chosen route is persisted and shown
+when useful.
+
+LinkedWorkCard can target an external ticket, Work Session, Task, Agent Run, approval, trust
+decision, artifact or pull request. It shows enough state to understand the answer and opens the
+canonical detail view. It never copies a second mutable version of that state into the transcript.
+
+Settings exposes **Orchestration** by role: Supervisor/Orchestrator, Builder, Verifier, Repair and
+Integration. Opening a role shows its runtime, model, reasoning effort and instructions. New Runs
+snapshot the effective Product/global profile and their detail shows the actual model; changing a
+profile never rewrites running or historical work.
 
 SessionCard shows:
 
@@ -281,6 +301,10 @@ SessionPage
 Workflow uses the graph package.
 
 On mobile, provide a vertical task list/timeline as the default and allow opening the graph when useful.
+
+The Work Session page is entered from linked work or My Work. It is not the application's default
+chat. Its composer continues or steers this specific work; returning to the home conversation does
+not end the Session.
 
 ## Agent Run
 
@@ -353,7 +377,8 @@ The first meaningful frontend vertical slice must allow a user to:
 
 ```text
 open My Work
- -> open Work Session
+ -> ask the Orchestrator for status without creating a Session
+ -> open a linked Work Session or Agent Run
  -> see current task/run state reactively
  -> open Agent Run
  -> watch normalized live activity

@@ -76,16 +76,26 @@ Commands have IDs, acknowledgement state and idempotency semantics.
 
 The Supervisor can use an agent framework for natural-language reasoning and tool calls, while deterministic application state remains in normal database tables.
 
+The app's primary conversation is an owner-level Orchestrator conversation, not a Work Session.
+Questions, status checks, explanations and reviews produce an answer plus typed links without a
+Work Session, Task or Agent Run. A requested plan produces a stored proposal. Explicit delegation
+routes to an existing Session or creates one; the backend validates that transition and remains
+the authority for dispatch, capacity, verification, trust and integration.
+
 Supervisor tools should operate at product-level semantics:
 
 ```text
 findRelevantSessions()
+findRelevantTickets()
+getLinkedWorkState()
 createWorkSession()
+continueWorkSession()
 planTasks()
 startAgentRun()
 sendToAgentRun()
 requestApproval()
 summarizeSession()
+linkWorkItem()
 ```
 
 The Supervisor should not directly execute arbitrary local shell commands.
