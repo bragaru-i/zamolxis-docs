@@ -260,9 +260,10 @@ Session for new execution, or ask a clarifying question. The chosen route is per
 when useful.
 
 The shipped Alpha uses this boundary with an inline Orchestrator transcript followed by the
-existing Sessions list. It renders persisted route labels and Session link buttons. `WorkDrawer`,
-external-ticket/Task/Run/evidence/PR cards and a separate model-backed Orchestrator role are still
-target design.
+existing Sessions list. It renders persisted route labels and typed link buttons: Session, Task,
+approval and trust links open the Session, a Run link opens Run detail (`?run=<id>`), and a pull
+request opens externally. `WorkDrawer`, richer LinkedWorkCards, external-ticket links and a separate
+model-backed Orchestrator role are still target design.
 
 LinkedWorkCard can target an external ticket, Work Session, Task, Agent Run, approval, trust
 decision, artifact or pull request. It shows enough state to understand the answer and opens the

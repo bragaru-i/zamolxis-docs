@@ -26,8 +26,9 @@ Convex functions are already a delivery boundary. Do not add artificial HTTP-sty
 The signatures below describe the full target. The shipped Alpha subset has one active
 conversation per owner: `orchestrator.messages` takes `{}`, and `orchestrator.submit` creates that
 conversation on first use. It persists `answer | create | continue`, returns `{ messageId, route,
-workSessionId? }`, and currently emits typed links for Work Sessions only. Conversation listing,
-explicit conversation selection, inert proposals and links to other target types remain planned.
+workSessionId? }`, and emits typed links to Sessions, approvals, pull requests, Tasks, trust decisions and active
+Runs. Conversation listing, explicit conversation selection, inert proposals and external-ticket
+links remain planned.
 
 ### orchestrator.listConversations — query
 
