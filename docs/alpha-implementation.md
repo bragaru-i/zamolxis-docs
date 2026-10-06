@@ -4,8 +4,9 @@ The executable `bragaru-i/zamolxis` repository is the behavioral source of truth
 This note describes the Alpha integration implementation, not a deployed service.
 The older specifications in this repository remain design/reference material.
 
-The hierarchy is Product -> Repository -> Work Session -> Task -> Workspace ->
-Agent Run -> Runtime. Human authentication now uses Convex Auth with Google;
+The execution hierarchy is Product -> Repository -> Work Session -> Task -> Workspace ->
+Agent Run -> Runtime. An owner-level Orchestrator Conversation sits above Work Sessions and is
+the primary human entry point. Human authentication now uses Convex Auth with Google;
 Node enrollment remains separate. This supersedes the external OIDC frontend flow.
 Convex owns human accounts/sessions and the operator grants or revokes product
 access via `users.accessStatus` (`allowed`, `pending`, `blocked`). Missing status
@@ -19,6 +20,11 @@ the phone talks to Convex and the Mac connects outbound.
 
 The Alpha implementation adds:
 
+- a durable owner-level Orchestrator conversation whose status/architecture answers do not create
+  Work Sessions, Tasks or Runs;
+- persisted `answer`, `create` and `continue` routing decisions plus typed Session links; explicit
+  execution creates work, while "continue"/"do it" can reuse a recently linked Session in the
+  selected repository;
 - SHA/digest-bound discovery in a planning worktree before persisted Tasks;
 - deterministic text planning (one Task) or a validated structured Task DAG;
 - server reservation of three Builder/Repair slots and one Verifier slot;
@@ -31,6 +37,18 @@ The Alpha implementation adds:
 - a dedicated local integration branch at a trusted exact SHA, Git artifact and
   trust-aware Task/Session completion;
 - mobile task phases, repair/failure reasons and a standalone app manifest.
+
+The home UI renders the Orchestrator transcript above the Sessions list and uses a **Send** composer.
+Questions remain in this transcript. Explicit work is handed to the existing Session Supervisor,
+which runs with the configured Supervisor runtime/model and can answer, ask, propose or delegate.
+Settings configures runtime, model, reasoning effort and instructions for Supervisor, Builder,
+Verifier, Repair and Integration roles.
+
+Current Orchestrator limits are explicit: structured summaries link Work Sessions only. The schema
+reserves typed links for Tasks, Runs, approvals, trust, pull requests and external tickets, but
+those richer resolvers and canonical cards are not implemented. The top-level
+answer/router is deterministic and is not a separately configured model-backed role. There is one
+active conversation per owner in Alpha; conversation listing/archiving is still target design.
 
 Downstream Tasks inherit trusted prerequisite commits; multiple prerequisites
 are merged inside their new worktree. Conflicts preserve local state and require

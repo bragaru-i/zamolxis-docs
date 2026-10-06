@@ -8,6 +8,8 @@ Instead of exposing terminals and processes as the primary abstraction, Zamolxis
 
 ```text
 Product → Repository → Work Session → Task → Workspace → Agent Run → Runtime
+
+Owner → Orchestrator Conversation → answer / linked Work Session
 ```
 
 Executable behavior lives in `bragaru-i/zamolxis`. This repository contains
@@ -37,7 +39,8 @@ behavior and current limitations.
                 +---------------------+
                 |    Control Plane    |
                 |---------------------|
-                | Supervisor          |
+                | Orchestrator        |
+                | Session Supervisor  |
                 | Work Sessions       |
                 | Durable Workflows   |
                 | Events / Approvals  |

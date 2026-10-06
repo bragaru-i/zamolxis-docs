@@ -259,6 +259,11 @@ answer from control-plane state, return typed links, continue an existing Sessio
 Session for new execution, or ask a clarifying question. The chosen route is persisted and shown
 when useful.
 
+The shipped Alpha uses this boundary with an inline Orchestrator transcript followed by the
+existing Sessions list. It renders persisted route labels and Session link buttons. `WorkDrawer`,
+external-ticket/Task/Run/evidence/PR cards and a separate model-backed Orchestrator role are still
+target design.
+
 LinkedWorkCard can target an external ticket, Work Session, Task, Agent Run, approval, trust
 decision, artifact or pull request. It shows enough state to understand the answer and opens the
 canonical detail view. It never copies a second mutable version of that state into the transcript.
@@ -267,6 +272,9 @@ Settings exposes **Orchestration** by role: Supervisor/Orchestrator, Builder, Ve
 Integration. Opening a role shows its runtime, model, reasoning effort and instructions. New Runs
 snapshot the effective Product/global profile and their detail shows the actual model; changing a
 profile never rewrites running or historical work.
+
+In Alpha, the configurable **Supervisor** profile is used after explicit work enters a Work
+Session. The deterministic top-level Orchestrator has no separate runtime/model selector.
 
 SessionCard shows:
 

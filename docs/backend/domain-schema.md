@@ -115,6 +115,10 @@ Product scope is optional until routing resolves it.
 }
 ```
 
+Alpha currently keeps one active owner-level conversation and omits `productId`; Product and
+repository are optional context on each message. Listing, selecting and archiving multiple
+conversations remain target behavior.
+
 ## orchestratorMessages
 
 ```ts
@@ -137,6 +141,12 @@ Product scope is optional until routing resolves it.
 Typed message links live in `orchestratorMessageLinks` so one answer can reference several
 external tickets, Sessions, Tasks, Agent Runs, approvals, evidence records, artifacts or pull
 requests. Targets are authorized when read and cannot cross Product ownership.
+
+The shipped Alpha stores one combined user/Orchestrator exchange per row (`text`, `reply`, `route`)
+with optional Product, repository and Work Session IDs. Its route union is `answer | create |
+continue`. Link target types are reserved for richer navigation, but only Session links are emitted
+and rendered today. Splitting transcript roles, route explanations, proposals, model usage and the
+remaining target resolvers is future work.
 
 ## workSessions
 
