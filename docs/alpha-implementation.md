@@ -22,7 +22,8 @@ The Alpha implementation adds:
 
 - a durable owner-level Orchestrator conversation whose status/architecture answers do not create
   Work Sessions, Tasks or Runs;
-- persisted `answer`, `create` and `continue` routing decisions plus typed Session links; explicit
+- persisted `answer`, `create` and `continue` routing decisions plus typed links to Sessions, pending
+  approvals, pull requests, Tasks needing the owner, trust decisions and active Runs; explicit
   execution creates work, while "continue"/"do it" can reuse a recently linked Session in the
   selected repository;
 - SHA/digest-bound discovery in a planning worktree before persisted Tasks;
@@ -44,9 +45,11 @@ which runs with the configured Supervisor runtime/model and can answer, ask, pro
 Settings configures runtime, model, reasoning effort and instructions for Supervisor, Builder,
 Verifier, Repair and Integration roles.
 
-Current Orchestrator limits are explicit: structured summaries link Work Sessions only. The schema
-reserves typed links for Tasks, Runs, approvals, trust, pull requests and external tickets, but
-those richer resolvers and canonical cards are not implemented. The top-level
+Current Orchestrator limits are explicit: status answers link Sessions, pending approvals, pull
+requests, attention Tasks (`needs_input`, `trust_failed`, `ready_for_integration`, `failed`), their
+trust decisions and active Runs for the five most recent Sessions in scope. Link status is a
+snapshot from answer time; the linked view is canonical. External-ticket links need a connector and
+are not implemented, and there are no dedicated canonical cards beyond link buttons. The top-level
 answer/router is deterministic and is not a separately configured model-backed role. There is one
 active conversation per owner in Alpha; conversation listing/archiving is still target design.
 

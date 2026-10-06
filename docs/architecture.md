@@ -89,9 +89,10 @@ Verifier and Repair runs; each Run snapshots and exposes the actual model used.
 
 **Alpha implementation:** one active owner-level conversation persists `answer`, `create` and
 `continue`. It answers architecture questions and deterministic status summaries without creating
-work, and returns typed Session links. Explicit execution creates a Session; explicit continuation
-can reuse a recently linked Session in the selected repository. Ticket, Task, Run, approval,
-evidence and pull-request resolution, proposals/asks at the global layer and a separately
+work, and returns typed links to Sessions, approvals, pull requests, Tasks, trust decisions and active
+Runs. Explicit execution creates a Session; explicit continuation can reuse a recently linked Session
+in the selected repository. External-ticket resolution, proposals/asks at the global layer and a
+separately
 configured model-backed Orchestrator remain target capabilities.
 
 The Supervisor recommends **what could happen**. The owner explicitly delegates, and the backend

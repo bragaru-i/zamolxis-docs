@@ -144,8 +144,9 @@ requests. Targets are authorized when read and cannot cross Product ownership.
 
 The shipped Alpha stores one combined user/Orchestrator exchange per row (`text`, `reply`, `route`)
 with optional Product, repository and Work Session IDs. Its route union is `answer | create |
-continue`. Link target types are reserved for richer navigation, but only Session links are emitted
-and rendered today. Splitting transcript roles, route explanations, proposals, model usage and the
+continue`. Status answers emit `session`, `approval`, `pull_request` (with an https `url`), `task`,
+`trust` and `run` links, each carrying its `workSessionId`; `status` is a snapshot from answer time.
+`external_ticket` is reserved but not emitted. Splitting transcript roles, route explanations, proposals, model usage and the
 remaining target resolvers is future work.
 
 ## workSessions
