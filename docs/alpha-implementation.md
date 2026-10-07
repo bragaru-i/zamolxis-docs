@@ -1,5 +1,10 @@
 # Alpha implementation boundary
 
+> **Superseded (2026-10-07).** This note describes the Alpha as of 2026-10-05/06. Since then
+> the Supervisor and Orchestrator run real models, the Claude Code adapter, approval bridging,
+> owner-approved pull request publishing and multiple Home chats shipped. Read
+> [How Zamolxis works today](how-it-works.md) for current behavior; this page is kept as history.
+
 The executable `bragaru-i/zamolxis` repository is the behavioral source of truth.
 This note describes the Alpha integration implementation, not a deployed service.
 The older specifications in this repository remain design/reference material.
