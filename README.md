@@ -12,10 +12,11 @@ Product → Repository → Work Session → Task → Workspace → Agent Run →
 Owner → Orchestrator Conversation → answer / linked Work Session
 ```
 
-Executable behavior lives in `bragaru-i/zamolxis`. This repository contains
-architecture/reference material; the capability lists below describe the design.
-See [Alpha implementation boundary](docs/alpha-implementation.md) for tested
-behavior and current limitations.
+Executable behavior lives in `bragaru-i/zamolxis`. **Start with
+[How Zamolxis works today](docs/how-it-works.md)**: what the product does now, the path from a
+message to a pull request, the ideas it is built on, safety rules and current limits. The
+other documents here are design notes from 2026-10-03; where they differ from current behavior,
+*How it works today* wins.
 
 ## What Zamolxis does
 
@@ -64,6 +65,7 @@ behavior and current limitations.
 
 | Document | Purpose |
 | --- | --- |
+| [How Zamolxis works today](docs/how-it-works.md) | **Current behavior**, ideas, safety, operations and limits |
 | [Product Vision](docs/product-vision.md) | Problem, product definition and principles |
 | [Architecture](docs/architecture.md) | System boundaries and end-to-end architecture |
 | [Work Session Model](docs/session-model.md) | Durable work context, tasks and Agent Runs |
@@ -83,20 +85,12 @@ behavior and current limitations.
 
 ## Status
 
-**Pre-Alpha / Architecture phase**
-
-The immediate objective is a vertical slice:
-
-```text
-Web UI
-  → Control Plane
-  → Zamolxis Node
-  → native local coding runtime
-  → normalized live events
-  → Web UI
-```
-
-Once this loop works reliably for one runtime and one workstation, Zamolxis expands to session intelligence, Supervisor routing, multi-agent workflows, additional runtime adapters and multiple workstations.
+**Private Alpha, complete (2026-10-07).** The full path (Home chat → Supervisor plan →
+Builders in isolated worktrees → independent Verifier and repository checks → deterministic
+trust → owner-approved pull request) runs in production and was proven with a real pull request
+opened through Zamolxis. Codex and Claude Code are supported; one owner, several computers.
+Postponed real-device checks and post-Alpha work are listed in
+[How Zamolxis works today](docs/how-it-works.md#status-and-known-limits-2026-10-07).
 
 ## Name
 
